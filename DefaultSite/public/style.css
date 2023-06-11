@@ -1,5 +1,7 @@
 dialog{
     padding: 1em;
+    padding-left: 3em;
+    padding-right: 3em;
     max-width: 50ch;
     border: none !important;
     border-radius: calc(5px * var(--ratio));

@@ -6,7 +6,6 @@
         <title>Log in Page</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-        <script src="./javascript.js"></script>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
@@ -32,8 +31,11 @@
                     <li class="nav-item">
                         <button class="btn pull-right" id="logIn"> Log In </button>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" >
                         <button class="btn pull-right" id="signUp"> Sign Up </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn pull-right" hidden id="profile"> Profile </button>
                     </li>
                 </ul>
             </div>
@@ -44,11 +46,11 @@
                 <div class="col-3">
                     <dialog class="logInModal" id="logInModal">
                         <div>
-                            <h2>Log In</h2>
+                            <h2 class="fw-bold">Log In</h2>
                             <form>
                                 <div>
-                                    <label for="logInUsername" class="form-label">Username</label>
-                                    <input type="Username" class="form-control" id="logInUsername">
+                                    <label for="logInEmail" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="logInEmail">
                                 </div>
                                 <div class="mb-3">
                                     <label for="logInPassword" class="form-label">Password</label>
@@ -57,32 +59,60 @@
                             </form>
                         </div>
                         <button type="button" class="btn btn-dark" id="closeLogIn">Close</button>
-                        <button type="button" class="btn btn-primary float-end" id="submit-button">Submit</button>
+                        <button type="button" class="btn btn-primary float-end" id="submitLogIn">Submit</button>
                     </dialog>
 
                     <dialog class="signUpModal" id="signUpModal">
                         <div>
-                            <h2>Sign Up</h2>
+                            <h2 class="fw-bold">Sign Up</h2>
                             <form>
-                                <div>
+                                <div class="form-floating mb-1">
+                                    <input required class="form-control" type="email" placeholder="name@example.com" id="signUpEmail" aria-describedby="emailHelp">
                                     <label for="signUpEmail" class="form-label">Email Address</label>
-                                    <input required class="form-control" type="email" class="form-check" id="signUpEmail" aria-describedby="emailHelp">
                                     <div id="emailHelp" class="form-text text-muted"> We'll never share your email with anyone else.</div>
                                 </div>
-                                <div>
-                                    <label for="username" class="form-label">Username</label>
-                                    <input required type="username" class="form-control" id="signUpUserName">
+                                <div class="form-floating mb-2">
+                                    <input required type="firstName" class="form-control" id="signUpFirstName">
+                                    <label for="signUpFirstName" class="form-label">First Name</label>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="signUpPassword" class="form-label">Password</label>
+                                <div class="form-floating mb-2">
+                                    <input required type="lastName" class="form-control" id="signUpLastName">
+                                    <label for="signUpLastName" class="form-label">Last Name</label>
+                                </div>
+                                <div class="form-floating mb-3">
                                     <input required class="form-control" type="password" id="signUpPassword">
+                                    <label for="signUpPassword" class="form-label">Password</label>
                                 </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="termsAndServices">
+                                    <p>Agree to <a href="#" title="Tooltip">Terms and Services</a></p>
+                                  </div>
                             </form>
                         </div>
-                        <button type="button" class="btn btn-dark" id="closeSignIn">Close</button>
-                        <button type="button" class="btn btn-primary float-end" id="submit-button">Submit</button>
+                        <button type="button" class="btn btn-dark" id="closeSignUp">Close</button>
+                        <button type="button" class="btn btn-primary float-end" id="signUpSubmit">Submit</button>
                     </dialog>
                 </div>
             </div>
         </div>
+        <div class="container">
+            <div class="row m-3">
+                <div class="col">
+                    <section id="whenSignedOut">
+                        <h1>My Awesome App</h1>
+                        <p> Hello Everyone </p>
+                    </section>
+                    <section id="whenSignedIn" hidden="true">
+                        <div id="greetUser"></div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </body>
+
+    <!-- Importing firebase used for database of storing user credentials -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
+    <script src="./index.js"></script>
 </html>
